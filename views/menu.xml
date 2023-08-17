@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="account_dgii_menu" name="DGII"
+              parent="account.menu_finance_entries"
+              sequence="0"
+              groups="account.group_account_user"/>
+
+    <menuitem id="dgii_report_menu" action="dgii_report_action"
+              name="DGII Report"
+              parent="account_dgii_menu"
+              sequence="14"/>
+</odoo>
