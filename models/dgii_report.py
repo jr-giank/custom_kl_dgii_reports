@@ -120,14 +120,14 @@ class DgiiReport(models.Model):
         string='Operations by NCF type',
         copy=False,
     )
-    cash = fields.Monetary('Cash', copy=False)
-    bank = fields.Monetary('Check / Transfer / Deposit', copy=False)
-    card = fields.Monetary('Credit Card / Debit Card', copy=False)
-    credit = fields.Monetary('Credit', copy=False)
-    bond = fields.Monetary('Gift certificates or vouchers', copy=False)
-    swap = fields.Monetary('Swap', copy=False)
-    others = fields.Monetary('Other Sale Forms', copy=False)
-    sale_type_total = fields.Monetary('Total', copy=False)
+    cash = fields.Monetary('Cash Sale', copy=False)
+    bank = fields.Monetary('(Check / Transfer / Deposit) Sale', copy=False)
+    card = fields.Monetary('(Credit Card / Debit Card) Sale', copy=False)
+    credit = fields.Monetary('Credit Sale', copy=False)
+    bond = fields.Monetary('Gift certificates or vouchers Sale', copy=False)
+    swap = fields.Monetary('Swap Sale', copy=False)
+    others = fields.Monetary('(Other Sale Forms) Sale', copy=False)
+    sale_type_total = fields.Monetary('Total Sale', copy=False)
 
     opr_income = fields.Monetary('Operations Income (No-Financial)', copy=False)
     fin_income = fields.Monetary('Financial Income', copy=False)
