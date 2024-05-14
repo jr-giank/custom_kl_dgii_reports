@@ -142,7 +142,7 @@ class AccountInvoice(models.Model):
     )
 
     def _get_invoice_payment_widget(self):
-        j = json.loads(self.invoice_payments_widget)
+        j = self.invoice_payments_widget
         return j['content'] if j else []
 
     @api.depends('payment_state')
@@ -152,7 +152,7 @@ class AccountInvoice(models.Model):
                 payments = inv._get_invoice_payment_widget()
                 inv.payment_date = (
                     payments[0]['date']
-                    if payments[0]['date'] >= dt.strftime(inv.invoice_date, '%Y-%m-%d')
+                    if payments[0]['date'] >= inv.invoice_date
                     else inv.invoice_date
                 )
                 if self._is_customer_invoice(inv) and any(

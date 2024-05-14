@@ -17,24 +17,17 @@
                     <field name="state" widget="statusbar" statusbar_visible="draft,generated,sent"/>
                 </header>
                 <sheet>
-                    <group>
-                        <group>
-                            <div class="oe_title">
-                                <h1>
-                                    <field name="company_id" readonly="0"/>
-                                </h1>
-                            </div>
-                        </group>
-                        <field name="previous_report_pending" invisible="1"/>
-                        <group attrs="{'invisible': [('previous_report_pending', '=', False)]}">
-                            <div class="alert alert-warning info_icon" role="alert">
-                                <span class="fa fa-lightbulb-o fa-lg" title="Info" aria-label="Info"/>
-                                <p>The previous report is still not marked as sent.</p>
-                                <p>Not setting a report as sent may throw inconsistencies
-                                    regarding invoices withholding dates.
-                                </p>
-                            </div>
-                        </group>
+                    <h1><field name="company_id"/></h1>
+                    
+                    <field name="previous_report_pending" invisible="1"/>
+                    <group attrs="{'invisible': [('previous_report_pending', '=', False)]}">
+                        <div class="alert alert-warning info_icon" role="alert">
+                            <span class="fa fa-lightbulb-o fa-lg" title="Info" aria-label="Info"/>
+                            <p>The previous report is still not marked as sent.</p>
+                            <p>Not setting a report as sent may throw inconsistencies
+                                regarding invoices withholding dates.
+                            </p>
+                        </div>
                     </group>
                     <notebook>
                         <page name="statements" string="Statements">
@@ -48,10 +41,11 @@
 
                             <div class="row">
                                 <div class="col-md-3">
-                                    <group name="606" col="2" class="bs-callout-info">
+                                    <group name="606" class="bs-callout-info">
                                         <button type="object" name="get_606_tree_view">
                                             <h2>606</h2>
                                         </button>
+                                        <separator colspan="1"/>
                                         <field name="purchase_records" readonly="1"/>
                                         <field name="purchase_invoiced_amount" readonly="1"/>
                                         <field name="service_total_amount" readonly="1"/>
@@ -67,13 +61,15 @@
                                         <field name="purchase_selective_tax" readonly="1"/>
                                         <field name="purchase_other_taxes" readonly="1"/>
                                         <field name="purchase_legal_tip" readonly="1"/>
-                                    </group>
+                                    </group>  
                                 </div>
+
                                 <div class="col-md-3">
                                     <group name="607" class="bs-callout-success">
                                         <button type="object" name="get_607_tree_view">
                                             <h2>607</h2>
                                         </button>
+                                        <separator colspan="1"/>
                                         <field name="sale_records" readonly="1"/>
                                         <field name="sale_invoiced_amount" readonly="1"/>
                                         <separator colspan="2"/>
@@ -87,19 +83,23 @@
                                         <field name="sale_legal_tip" readonly="1"/>
                                     </group>
                                 </div>
+
                                 <div class="col-md-3">
                                     <group name="608" class="bs-callout-warning">
                                         <button type="object" name="get_608_tree_view">
                                             <h2>608</h2>
                                         </button>
+                                        <separator colspan="1"/>
                                         <field name="cancel_records" readonly="1"/>
                                     </group>
                                 </div>
+
                                 <div class="col-md-3">
                                     <group name="609" class="bs-callout-danger">
                                         <button type="object" name="get_609_tree_view">
                                             <h2>609</h2>
                                         </button>
+                                        <separator colspan="1"/>
                                         <field name="exterior_records" readonly="1"/>
                                         <field name="exterior_invoiced_amount" readonly="1"/>
                                         <separator colspan="2"/>
@@ -109,6 +109,7 @@
                                 </div>
                             </div>
                         </page>
+
                         <page name="files" string="TXT Files">
                             <group>
                                 <group>
@@ -123,21 +124,25 @@
                                 </group>
                             </group>
                         </page>
+                        
                         <page name="it1" string="IT-1">
-                            <group string="607 Reported Operations by NCF Type">
-                                <field name="ncf_sale_summary_ids" nolabel="1" widget="one2many_list" readonly="1">
-                                    <tree create="false" edit="false">
-                                        <field name="sequence" invisible="1"/>
-                                        <field name="name"/>
-                                        <field name="qty"/>
-                                        <field name="amount" sum="Operations Total"/>
-                                        <field name="currency_id" invisible="1"/>
-                                        <field name="dgii_report_id" invisible="1"/>
-                                    </tree>
-                                </field>
-                            </group>
+                            
+                            <h1>
+                                607 Reported Operations by NCF Type
+                            </h1>
+                            <field name="ncf_sale_summary_ids" nolabel="1" widget="one2many_list" readonly="1">
+                                <tree create="false" edit="false">
+                                    <field name="sequence" invisible="1"/>
+                                    <field name="name"/>
+                                    <field name="qty"/>
+                                    <field name="amount" sum="Operations Total"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="dgii_report_id" invisible="1"/>
+                                </tree>
+                            </field> 
+                            
                             <group>
-                                <group col="3" string="Operations by Sale Type">
+                                <group string="Operations by Sale Type">
                                     <field name="cash" readonly="1"/>
                                     <field name="bank" readonly="1"/>
                                     <field name="card" readonly="1"/>
@@ -147,7 +152,7 @@
                                     <field name="others" readonly="1"/>
                                     <field name="sale_type_total" readonly="1"/>
                                 </group>
-                                <group col="3" string="Operations by Income Type">
+                                <group string="Operations by Income Type">
                                     <field name="opr_income" readonly="1"/>
                                     <field name="fin_income" readonly="1"/>
                                     <field name="ext_income" readonly="1"/>
@@ -158,6 +163,7 @@
                                 </group>
                             </group>
                         </page>
+                        
                         <page name="consumer" string="Consumer Invoices Summary">
                             <group string="General Summary of Consumer Invoices">
                                 <group col="3">
@@ -179,10 +185,9 @@
                                 </group>
                             </group>
                         </page>
-
                     </notebook>
-
                 </sheet>
+
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
                     <field name="message_ids" widget="mail_thread"/>
